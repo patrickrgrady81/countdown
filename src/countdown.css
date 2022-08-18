@@ -14,3 +14,11 @@
     display: flex;
     justify-content: center;
 }
+
+.reddish {
+    background-color: #facdcd;
+}
+
+.greenish {
+    background-color: #B9F3BE;
+}

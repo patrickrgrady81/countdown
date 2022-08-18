@@ -4,14 +4,24 @@ import './countdown.css';
 
 function Countdown(props) {
 
-  let days = parseInt((props.date.getTime() - Date.now()) / (1000 * 60 * 60 * 24)) + 1;
+  let days = (props.date.getTime() - Date.now()) / (1000 * 60 * 60 * 24);
   // let hours = parseInt(((props.date.getTime() - Date.now()) / (1000 * 60 * 60 * 24) - days) * 24);
-  let addS = days > 1 ? "s" : ""
+  let until;
+  let color;
+  if (days >=0) {
+    until = "until";
+    color = "greenish";
+  } else {
+    until = "since";
+    color = "reddish";
+  }
+  days = days > 0 ? Math.ceil(Math.abs(days)) : Math.floor(Math.abs(days));
+  let addS = days !== 1 ? "s" : ""
   
   return (
     <div className="container">
-      <div className="countdown">
-        <h3>{`${days} Day${addS} until ${props.date.toDateString()}`}</h3>
+      <div className={`countdown ${color}`}>
+        <h3>{`${days} Day${addS} ${until} ${props.date.toDateString()}`}</h3>
       </div>
     </div>
   )

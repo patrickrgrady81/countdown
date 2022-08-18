@@ -7,7 +7,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { DayPicker } from 'react-day-picker';
 import 'react-day-picker/dist/style.css';
 
-import {useState} from 'react';
+import {useState, useEffect} from 'react';
 
 import "./App.css";
 
@@ -20,21 +20,25 @@ function App() {
   const [selectedDay, setSelectedDay] = useState();
   const [dates, setDates] = useState([]);
 
-  const addDate = () => {
-    setDates([...dates, selectedDay])
+  const sortDates = () => {
     dates.sort((a, b) => {
-      if (a < b) return -1;
-      else if (a > b) return 1;
-      else return 0;
+      return a - b;
     })
   }
+
+  useEffect(() => {
+    dates.sort((a, b) => {
+      return a - b;
+    })
+  }, [dates]);
 
   const handleAdd = (e) => {
     e.preventDefault();
 
-    addDate();
+    setDates([...dates, selectedDay])
 
     setIsModalOpen(false);
+
   }
 
   const handleCancel = (e) => {
@@ -60,7 +64,7 @@ function App() {
             />
           </Form.Group>
         </div>
-        <Button variant="primary" type="submit" onClick={(e)=>handleAdd(e)}>
+        <Button variant="primary" onClick={(e)=>handleAdd(e)}>
           Add
         </Button>
         <Button variant="danger" onClick={(e)=>handleCancel(e)}>Cancel</Button>
