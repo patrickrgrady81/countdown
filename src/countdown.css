@@ -1,0 +1,16 @@
+.countdown {
+    box-sizing: content-box;
+    display: flex;
+    width: fit-content;
+    justify-content: center;
+    text-align: center;
+    margin-top: 25px;
+    border: 5px solid black;
+    border-radius: 12px;
+    padding: 10px;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+}
