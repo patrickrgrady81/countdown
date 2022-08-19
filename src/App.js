@@ -1,4 +1,4 @@
-import {useState, useLayoutEffect} from 'react';
+import {useState, useEffect} from 'react';
 
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
@@ -20,10 +20,11 @@ function App() {
   const [selectedDay, setSelectedDay] = useState();
   const [dates, setDates] = useState([]);
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     dates.sort((a, b) => {
       return a - b;
     })
+    setDates([...dates]);
   }, [dates]);
 
   const handleAdd = (e) => {
