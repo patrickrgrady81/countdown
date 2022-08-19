@@ -8,7 +8,7 @@ function Countdown(props) {
   // let hours = parseInt(((props.date.getTime() - Date.now()) / (1000 * 60 * 60 * 24) - days) * 24);
   let until;
   let color;
-  if (days >=0) {
+  if (days > -1) {
     until = "until";
     color = "greenish";
   } else {

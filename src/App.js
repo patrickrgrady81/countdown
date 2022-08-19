@@ -1,3 +1,5 @@
+import {useState, useEffect} from 'react';
+
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
@@ -7,24 +9,16 @@ import { v4 as uuidv4 } from 'uuid';
 import { DayPicker } from 'react-day-picker';
 import 'react-day-picker/dist/style.css';
 
-import {useState, useEffect} from 'react';
+import Countdown from "./Countdown";
+import Nav from './Nav';
 
 import "./App.css";
-
-import Countdown from "./Countdown"
-
 
 function App() {
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedDay, setSelectedDay] = useState();
   const [dates, setDates] = useState([]);
-
-  const sortDates = () => {
-    dates.sort((a, b) => {
-      return a - b;
-    })
-  }
 
   useEffect(() => {
     dates.sort((a, b) => {
@@ -50,7 +44,7 @@ function App() {
 
   return (
     <div>
-      <Button variant="info" onClick={handleShow}>Add Countdown Timer</Button>
+      <Nav handleShow={handleShow}/>
 
       <Modal show={isModalOpen} backdrop="static" centered contentClassName="modal-dates">
       <Form className="modal-form">
@@ -72,9 +66,7 @@ function App() {
       </Modal>
       {
         dates.map(date => {
-          // return <h3 key={uuidv4()}>{String(date)}</h3>
           return <Countdown key={uuidv4()} date={date}/>
-          // console.log(String(date));
         })
       }
     </div>
