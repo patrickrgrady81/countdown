@@ -1,4 +1,4 @@
-import {useState, useEffect} from 'react';
+import {useState, useLayoutEffect} from 'react';
 
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
@@ -20,7 +20,7 @@ function App() {
   const [selectedDay, setSelectedDay] = useState();
   const [dates, setDates] = useState([]);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     dates.sort((a, b) => {
       return a - b;
     })
@@ -50,7 +50,7 @@ function App() {
       <Form className="modal-form">
         <div className="dates">
           <Form.Group className="mb-3" controlId="formBasicEmail">
-            <Form.Label className="center bold underline">Select Countdown Date</Form.Label>
+            <Form.Label className="center bold underline rem2">Select Date</Form.Label>
             <DayPicker 
               mode="single"
               selected={selectedDay}
@@ -58,10 +58,10 @@ function App() {
             />
           </Form.Group>
         </div>
-        <Button variant="primary" onClick={(e)=>handleAdd(e)}>
-          Add
-        </Button>
-        <Button variant="danger" onClick={(e)=>handleCancel(e)}>Cancel</Button>
+        <div className="date-btns">
+          <Button variant="primary" onClick={(e)=>handleAdd(e)}>Add</Button>
+          <Button variant="danger" onClick={(e)=>handleCancel(e)}>Cancel</Button>
+        </div>
       </Form>
       </Modal>
       {

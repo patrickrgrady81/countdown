@@ -27,3 +27,12 @@ body {
 .underline {
     text-decoration: underline;
 }
+
+.date-btns {
+    display: flex;
+    justify-content: space-around;
+}
+
+.rem2 {
+    font-size: 2rem;
+}
