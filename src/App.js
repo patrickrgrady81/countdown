@@ -5,11 +5,12 @@ import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
 
 import { v4 as uuidv4 } from 'uuid';
+import axios from 'axios';
 
 import { DayPicker } from 'react-day-picker';
 import 'react-day-picker/dist/style.css';
 
-import Countdown from "./Countdown";
+import Countdown from './Countdown';
 import Nav from './Nav';
 
 import "./App.css";
@@ -20,15 +21,24 @@ function App() {
   const [selectedDay, setSelectedDay] = useState();
   const [dates, setDates] = useState([]);
 
+  const HOST = "http://localhost:8080/api/v1/date";
+
+  const fetchDates = () => {
+    axios.get(HOST).then(res => {
+      console.log(res.data);
+    });
+  }
+
   useEffect(() => {
-    dates.sort((a, b) => {
-      return a - b;
-    })
-    setDates([...dates]);
+    fetchDates();
   }, [dates]);
 
   const handleAdd = (e) => {
     e.preventDefault();
+
+
+    const req = {"date": selectedDay};
+    axios.post(HOST, req).then(res => fetchDates());
 
     setDates([...dates, selectedDay])
 
