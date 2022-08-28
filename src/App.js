@@ -21,25 +21,31 @@ function App() {
   const [selectedDay, setSelectedDay] = useState();
   const [dates, setDates] = useState([]);
 
-  // const LOCALHOST = "http://localhost:8080/api/v1/date";
-  const HEROKU = "https://countdown-pg.herokuapp.com/api/v1/date";
+  const HOST = "http://localhost:8080/api/v1/date";
+  // const HOST = "https://countdown-pg.herokuapp.com/api/v1/date";
 
   const fetchDates = () => {
-    axios.get(HEROKU).then(res => {
-      console.log(res.data);
-    });
+    axios.get(HOST).then(res => {
+      let dats = res.data.map(d => {
+          return d.date;
+        });
+        setDates(dats);
+      });
   }
 
   useEffect(() => {
     fetchDates();
-  }, [dates]);
+  }, []);
 
   const handleAdd = (e) => {
+
     e.preventDefault();
 
-
     const req = {"date": selectedDay};
-    axios.post(HEROKU, req).then(res => fetchDates());
+
+    axios.post(HOST, req).then(res => {
+      fetchDates();
+    });
 
     setDates([...dates, selectedDay])
 
@@ -78,6 +84,7 @@ function App() {
       </Modal>
       {
         dates.map(date => {
+          // console.log(`PASSING DATE: ${date}`);
           return <Countdown key={uuidv4()} date={date}/>
         })
       }

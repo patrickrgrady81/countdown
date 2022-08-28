@@ -23,3 +23,10 @@
 .greenish {
     background-color: #B9F3BE;
 }
+
+.delete-button {
+    margin-left: 8px;
+    border: none;
+    color: red;
+    font-size: 1.4rem;
+}

@@ -1,10 +1,17 @@
-import React from 'react'
+import React from 'react';
+
+import Button from 'react-bootstrap/Button';
 
 import './countdown.css';
 
 function Countdown(props) {
 
-  let days = (props.date.getTime() - Date.now()) / (1000 * 60 * 60 * 24);
+  let d = new Date(props.date);
+
+  // console.log(`Props in Countdown ${d}`);
+
+  let days = (d - Date.now()) / (1000 * 60 * 60 * 24);
+  // console.log(`DAYS IN COUNTDOWN: ${days}`);
   let until;
   let color;
   if (days > -1) {
@@ -20,7 +27,8 @@ function Countdown(props) {
   return (
     <div className="container">
       <div className={`countdown ${color}`}>
-        <h3>{`${days} Day${addS} ${until} ${props.date.toDateString()}`}</h3>
+        <h3>{`${days} Day${addS} ${until} ${d.toDateString()}`}</h3>
+        <Button className={`delete-button ${color}`}>X</Button>
       </div>
     </div>
   )
