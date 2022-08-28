@@ -21,8 +21,8 @@ function App() {
   const [selectedDay, setSelectedDay] = useState();
   const [dates, setDates] = useState([]);
 
-  // const HOST = "http://localhost:8080/api/v1/date";
-  const HOST = "https://countdown-pg.herokuapp.com/api/v1/date";
+  const HOST = "http://localhost:8080/api/v1/date";
+  // const HOST = "https://countdown-pg.herokuapp.com/api/v1/date";
 
   const fetchDates = () => {
     axios.get(HOST).then(res => {
